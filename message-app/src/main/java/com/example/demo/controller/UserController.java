@@ -39,7 +39,7 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
-    // curl: PUT /users/{index}/age  (body: number as JSON or plain text)
+    // curl: PUT /users/{index}/age  (body: nUM AS JSON
     @PutMapping("/{index}/age")
     public ResponseEntity<Void> updateAge(@PathVariable int index, @RequestBody Integer age) {
         User u = users.get(index);
@@ -47,3 +47,4 @@ public class UserController {
         return ResponseEntity.accepted().build();
     }
 }
+
