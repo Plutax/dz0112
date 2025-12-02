@@ -17,7 +17,6 @@ public class MessageController {
     }
 
     // curl: GET http://localhost:8080/messages
-    // curl with filter: GET http://localhost:8080/messages?startsWith=He
     @GetMapping
     public ResponseEntity<List<String>> getMessages(
             @RequestParam(required = false) String startsWith) {
@@ -51,8 +50,7 @@ public class MessageController {
         service.updateMessage(index, text);
         return ResponseEntity.accepted().build();
     }
-
-    // Оценка 4: поиск первого индекса с подстрокой
+    // search index
     // curl: GET /messages/search/{text}
     @GetMapping("/search/{text}")
     public ResponseEntity<Integer> search(@PathVariable String text) {
@@ -72,10 +70,11 @@ public class MessageController {
         return ResponseEntity.accepted().build();
     }
 
-    // curl: DELETE /messages/search/{text}  - удалить все содержащие подстроку
+    // curl: DELETE /messages/search/{text} = delete string
     @DeleteMapping("/search/{text}")
     public ResponseEntity<Void> deleteBySubstring(@PathVariable String text) {
         service.deleteAllWithSubstring(text);
         return ResponseEntity.noContent().build();
     }
 }
+
